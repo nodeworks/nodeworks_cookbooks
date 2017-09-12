@@ -1,0 +1,35 @@
+server {
+    listen 80;
+    listen 443 ssl http2;
+
+    <% if @app[:environment][:SECURE] == 'true' -%>
+    #if ($https = "") {
+    #  return 301 https://$host$request_uri;
+    #}
+
+    #ssl_certificate /etc/letsencrypt/live/<%= @app[:domains].first %>/fullchain.pem;
+    #ssl_certificate_key /etc/letsencrypt/live/<%= @app[:domains].first %>/privkey.pem;
+    <% end -%>
+
+    server_name <%= @app[:domains].first %>;
+    root /var/www/<%= @app[:attributes][:document_root] %>;
+
+    index index.html index.htm index.php;
+
+    charset utf-8;
+
+    location / {
+      proxy_set_header X-Real-IP $remote_addr;
+      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_set_header Host $http_host;
+      proxy_set_header X-NginX-Proxy true;
+      proxy_pass http://127.0.0.1:3000/;
+      proxy_redirect off;
+      proxy_http_version 1.1;
+      proxy_set_header Upgrade $http_upgrade;
+      proxy_set_header Connection "upgrade";
+
+      proxy_redirect off;
+      proxy_set_header   X-Forwarded-Proto $scheme;
+    }
+}

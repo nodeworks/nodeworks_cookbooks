@@ -1,0 +1,37 @@
+{
+  "ami_id": "ami-090f2272",
+  "architecture": "x86_64",
+  "auto_scaling_type": null,
+  "availability_zone": "us-east-1a",
+  "created_at": "2017-08-06T02:42:56+00:00",
+  "ebs_optimized": false,
+  "ec2_instance_id": "i-09f25ab415a1e4ca2",
+  "elastic_ip": null,
+  "hostname": "prometheus",
+  "instance_id": "221941a4-eb8b-43ff-b967-0630766e2e37",
+  "instance_type": "t2.medium",
+  "layer_ids": [
+    "37e6b959-85e0-4527-bb35-88953ffdf5fa"
+  ],
+  "os": "Custom",
+  "private_dns": "ip-10-0-0-182.ec2.internal",
+  "private_ip": "10.0.0.182",
+  "public_dns": "ec2-34-200-254-212.compute-1.amazonaws.com",
+  "public_ip": "34.200.254.212",
+  "root_device_type": "ebs",
+  "root_device_volume_id": "vol-0e0ce939a8ba44c1d",
+  "ssh_host_dsa_key_fingerprint": "cb:7c:5c:b6:33:8e:88:c7:3b:3c:4d:22:cd:b7:8a:6c",
+  "ssh_host_dsa_key_public": "ssh-dss AAAAB3NzaC1kc3MAAAEBAOKonUs0SbdTW5cud68gTtC34LDO+8CD9ThweNFChFVxUxgMsYZasmdIB2Ngtqd1bEIW2164sN/7CrsqCytBkODvg7ybvPgFqSBvX1PFJjU2BW3smcx+FwT21SzrvC0xoKDZr1jSWNPcgfT1C9rkQjB+vGYCIi+yzX065OjS3l3ogddUOud5atLl6Elz1dsmgRKe44Ai+Ub9d9r+JN0X3J41yspaDkecnCV5H21lNGESpkxbPGssM4M5g+tvGgSKvCUysYucE4BAMk2rWMAuLA8MK6CQkscgAuhaZJmvqPtW0Nz9JrxIgl18RSY63UKmpePo1ommVcDKXT5CAGTvqU0AAAAhAIWfGO7b7drTdIKl2YkXRLmIlI0ZEsyhcigEVfFNGLWHAAABAQDCEp9LRx6RIoKMhLhu4hxtxpkP/tZvvZN84HHtQk4FFCS4qPVYdRQOnVqS9jzZIznKuiSJQimBt7Mg1U4PBkrTY2IHQAS/M8M7hNBmHfNluOaUw7AUaVWIcrmjP4FIbIj6MTCm07b8po4Pwy86mkx0A7fku+tN/P0EUJefMhpl+ukvdtQED+o7zpOmLenOUstGhdx2dloPwV8rGnDzKqBKAal/Wta6Rgtpp1IfLqtBwmMmgdxiAouZ5dSakKP86IutipZjmEKz9wR5NXdIFrZhLwJwev16OSCuxiC1VTOk2mrrZMtA1yKAe2fyoZvI8T9xSmuNfGulw6nX6Flg5a7cAAABAGlZPyrYhHyy4YL4GcPPbAldWAN/CenY4SmT4puup8BmSe7MYklDATn0Hq2oQoPSNizC+76vAeWI7AGlckDHTdj8sZD/sY9ar9elORT9qcduaJiRy3Pd+56oDuBRv2PqC5vYdsPq6MLQPFV7Ro6ZJ14wN21LNn5ZY0byWHMIKKuFv78NQLVqcUm1+lMa3egpKQ2//pASYL+F74delpxTXAGN50+inqio+22Ds+0Q7LDxsNRzJNMSoOklKQhlTiKYr6xOTpGUxCxXzR4Frry9ksQbNSlGH9yP+qv0ohys0U4ZiOUkHKq5fpI9WeaqQaBn5UIIXSjTdbGz7i8d/5OFMVM=",
+  "ssh_host_rsa_key_fingerprint": "50:ce:9d:af:4f:72:cd:28:5d:c0:90:cc:df:6c:cd:20",
+  "ssh_host_rsa_key_public": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDv2pUt7eqj/BJfy53dZ923VORaok02WxRcEkG3XI2eSHs+iGeNhJco3Aae/6nR7BD/8ZjBR2NbNgOEhSVvWPnOvHwjXyuc7KaDhrJJ103fKII9sQ8iDrLlobNVKlDX7uCCljw7Yr/R35yR47CsIgP206kbGQ2D0UI0CF70kzeP6Md47VFBFG0afBA/Uw3Z2+2+9lFwUNQmuXEzxh1DRTjh/p2TiDOUu8ZS1KdqzCWtsCOXDN3L70GTzPcCSJvECVcXV9hbaC1jeeW3zAcGzVQdNliNRk++Nr8DrI3z8zqlDtsIYwAFiwJEwe7YQuiNYdPEmAp/6de0JqMGPFo+aI0N",
+  "status": "online",
+  "subnet_id": "subnet-77808312",
+  "virtualization_type": "hvm",
+  "infrastructure_class": "ec2",
+  "ssh_host_dsa_key_private": "-----BEGIN DSA PRIVATE KEY-----\nMIIDVgIBAAKCAQEA4qidSzRJt1Nbly53ryBO0LfgsM77wIP1OHB40UKEVXFTGAyx\nhlqyZ0gHY2C2p3VsQhbbXriw3/sKuyoLK0GQ4O+DvJu8+AWpIG9fU8UmNTYFbeyZ\nzH4XBPbVLOu8LTGgoNmvWNJY09yB9PUL2uRCMH68ZgIiL7LNfTrk6NLeXeiB11Q6\n53lq0uXoSXPV2yaBEp7jgCL5Rv132v4k3RfcnjXKyloOR5ycJXkfbWU0YRKmTFs8\naywzgzmD628aBIq8JTKxi5wTgEAyTatYwC4sDwwroJCSxyAC6Fpkma+o+1bQ3P0m\nvEiCXXxFJjrdQqal4+jWiaZVwMpdPkIAZO+pTQIhAIWfGO7b7drTdIKl2YkXRLmI\nlI0ZEsyhcigEVfFNGLWHAoIBAQDCEp9LRx6RIoKMhLhu4hxtxpkP/tZvvZN84HHt\nQk4FFCS4qPVYdRQOnVqS9jzZIznKuiSJQimBt7Mg1U4PBkrTY2IHQAS/M8M7hNBm\nHfNluOaUw7AUaVWIcrmjP4FIbIj6MTCm07b8po4Pwy86mkx0A7fku+tN/P0EUJef\nMhpl+ukvdtQED+o7zpOmLenOUstGhdx2dloPwV8rGnDzKqBKAal/Wta6Rgtpp1If\nLqtBwmMmgdxiAouZ5dSakKP86IutipZjmEKz9wR5NXdIFrZhLwJwev16OSCuxiC1\nVTOk2mrrZMtA1yKAe2fyoZvI8T9xSmuNfGulw6nX6Flg5a7cAoIBAGlZPyrYhHyy\n4YL4GcPPbAldWAN/CenY4SmT4puup8BmSe7MYklDATn0Hq2oQoPSNizC+76vAeWI\n7AGlckDHTdj8sZD/sY9ar9elORT9qcduaJiRy3Pd+56oDuBRv2PqC5vYdsPq6MLQ\nPFV7Ro6ZJ14wN21LNn5ZY0byWHMIKKuFv78NQLVqcUm1+lMa3egpKQ2//pASYL+F\n74delpxTXAGN50+inqio+22Ds+0Q7LDxsNRzJNMSoOklKQhlTiKYr6xOTpGUxCxX\nzR4Frry9ksQbNSlGH9yP+qv0ohys0U4ZiOUkHKq5fpI9WeaqQaBn5UIIXSjTdbGz\n7i8d/5OFMVMCIDVFrKgFxVJAgEr5n/vrtuUADjbCwO1+y1yxnPozsDXL\n-----END DSA PRIVATE KEY-----\n",
+  "ssh_host_rsa_key_private": "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEA79qVLe3qo/wSX8ud3Wfdt1TkWqJNNlsUXBJBt1yNnkh7Pohn\njYSXKNwGnv+p0ewQ//GYwUdjWzYDhIUlb1j5zrx8I18rnOymg4aySddN3yiCPbEP\nIg6y5aGzVSpQ1+7ggpY8O2K/0d+ckeOwrCID9tOpGxkNg9FCNAhe9JM3j+jHeO1R\nQRRtGnwQP1MN2dvtvvZRcFDUJrlxM8YdQ0U44f6dk4gzlLvGUtSnaswlrbAjlwzd\ny+9Bk8z3AkibxAlXF1fYW2gtY3nlt8wHBs1UHTZYjUZPvja/A6yN8/M6pQ7bCGMA\nBYsCRMHu2ELojWHTxJgKf+nXtCajBjxaPmiNDQIDAQABAoIBADpux/UehxFYManA\n0z7DNRKazd7+t0zMt5MOp4/iLmYnRk8fsAqcCK9dmwdVRavslN+lng9IMv5flE/O\nmCYeSQ2CgcOkRd2/EXntcLXojAIXvlMFNaiYaCDlWekfm/5fJbbqntXg4tZgYaZx\nD/N/ffO98O63FcHNUxGWEHwI+XpHRMI1KT44Btn4l5QmFc9PCa0pmn9AltIX318g\nQxNSujI3a83kxEnE6r0bShrW/9jZgecQStkSCWucNVLRFhRPmy9yYvl6mhV1mS+O\n/2SELzsH121ZQFp16Us6MXies956mOaCoTiMyutYLty5v2n/dAGfYPHzccCK08dZ\nPPNra8ECgYEA+u588MmTGPiiGoIYDkC/dLP3aPgptsvhWdOz9ZYTy2XG/i2or2k+\nal/BN2yChiTUgs/dDc+KlXoYgkaw02T1wjCxoGrXQTEB1AtHJmJ2d2436xWTvTay\nU9FuoAV7aQ7na8P9mVzz7BG5aLKjGPcJM2b+ATXBiLuop532f3c528kCgYEA9LLQ\nZczRcyRkykZkLLIUJsC8yf2qyQlpdvyJip0IrUDt7gIJK34skkXHew4D7ZdEUYdN\nzC4Vrjj6MHF6Er9A/4rw9m04xjo8Dydu7XocwjU2w5Vhu73WId7G2WUV17mEidV6\n2+F6li5doSp07vxv8J1tWzPU76Hd5Io3e7ewASUCgYBm4KIewjXptf4X6iBcr5UP\nDr2vrpbDmAETJ+WPGXGSIW8dRLD1AawSRqHbzEQTJURvQTN69wz1TbKAruTONoU/\nkWExyLvpwWLjgaAxD4tMWcbZPeZtW+Bu1t2JA9Zd8ztUBm2Rk/d5YKboUtzlXlrK\nVT5sVpK7MVzrI6stBT+WaQKBgQCj45e8dv/ZdIilCZxSazsf8XsAdouKdmlSrjWY\nxzBmidRR0r89iBZmKaI/gtWSrfut90dd94fB1puLEpXGNJ5eCTr2cZTS/3H2XFzp\nZR4Z3PY+7LA2xCDFMqZQOGn2wGRKxNayqkQmjgtbxEnpPt3idC4oJYD6tpkdVo1u\nqUqSmQKBgFiDiJSlnzY6VWIAEVjapbgHgAso/ym8gWLno5aGzcO36LTJLLWj+uNj\n/WVJDTk4CnEQsaH9TW8PK47KDLreQvlJbJdgzG2NbbUhCPt1JexG9NNUKhdNBxDr\ntndNKK83oNwRuaOcPisK/T17mXQzn0aA37ElMA+KUFyOFXEjIcKR\n-----END RSA PRIVATE KEY-----\n",
+  "role": [
+    "prod_app"
+  ],
+  "self": true
+}

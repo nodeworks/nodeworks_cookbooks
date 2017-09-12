@@ -1,0 +1,43 @@
+{
+  "app_id": "reactapp",
+  "app_source": {
+    "password": null,
+    "revision": "master",
+    "ssh_key": "-----BEGIN RSA PRIVATE KEY-----\nMIIEoQIBAAKCAQEA4yEK0dCVpi4q5K5nnEGVlwhb0fkg/9X6zZmwqr7jEXXBs70p\nQ1KimF88dly2vefL9jsi0fkh5rgANOxQrr93+rbDtSTXIbnNDHAuIjGZ6nZ94tez\nCfrcakM9Ft/J2BMA4xsBBFC0cV9pADqt90Grla6S+hYz8W7fZaEAzA6sZ3jqzLqZ\nFA54hPDYfQWbLXyaB+CceTsb3OPPiDZ2UMKG091NgcnOGScvyzoyN/Gm09lITLXe\nh+vJc5Ou27Tf3we+udxW19Q9yYpmRlaDhnRjrTVzWHETiM2Cc4NcKJrhiBVIg1ff\nfasS5NHnN4AWXPsdJRNvCaTwrxok7G9BuEA4UwIBIwKCAQBUXLrgN4gKhi0wXgk6\nCbs4GQwpaymDmJ776KC0csleQa5Ys/liJgHg0uqSXPNrG5Tmbbx54DEpz1CIr4uu\nnuNrwDoQFP9y7T2IRuyQW5Dwr6sZvdTJMUqN3nXGquSSFa/fUyxDbm7oSAJtzKcE\nERPYgquet8omeaNu5AecP/bkme03i+E2Puas4YHn5TEHdv+hiTq3YS6iejAFs3hM\nqywZqkdkdQdyCg9GAB+lChD9U2IxtS2kDxn64qhWt//A8WcGmICa8RwL0qHvrfvR\naYBkRClADHOVF5gud8QvPhk33p0Q+s6Yna4IHljwYiybwdC4Qa6LTvzMqDWf8//V\n4YBzAoGBAPOwXLjFvU7NN5dShY06xO9Br2H2Ivxt9E/X7BUM25vEWXO66erPVT56\nwaf1xr4DnKH6EDkT0kK7x/gYZ41TOPe+AFso1iRQvWJYBNofOxILLHmE9Mr5tIpL\njh67dxkN8HMInDU8gvYOxOERWqi6McLu8y6BgybJNPTOfhWuf03XAoGBAO6agtC8\nRVo1C1mSyDstY5gTSZxt/slDV8NSLB1hy0zxzRmRB0Vlj3lsn5eF1LsSg4pC+O9/\nU1R2y/GLDyvTHXaHo9yD/s32gjxBpKD4WFpss+06vTjCnl5vxnwBo/q8V1X+P8zN\npvmFHcftuqbEXRSU0eDCTSFIvdrRwrZTxEHlAoGBAKAjcCGmg7dw6gRazMqFtJ05\nywXcQuBlg0ppUf80VczC27Jzg8YwediZz7eEQMYCX52kU828kXxPg2iFENk2sGhJ\nqHZrSuSqFg1tCoC1b/XqFel0oN0nv8iYDO+fw0r6iBEUSWTP/knscr/Jk1jvYodp\n0wFNyza+vGZbzzLRwV8JAoGAG0TbwBWERNLcuceh2uCdqvrj110HLPHA4x9Vf7Nn\nsQWxCjx13AubXlWOlPlaJAIdqWa9XTMfd14IreQBu92c95p5IIQdHtpYBuLuPkhE\nnJ61ejKZSFDBpGSLtmaWZcxhwK9Xv6J5e5ovSgyKXDOy3cfdeMW/rAhQNkPbvRDj\nOrsCgYBQuHVcknweNMrcBLMxSrN137f8srCVx8g6sqUJMpkrFqOFZ5FNpGp7ftxZ\nr19kh39rQux1tukHgVSbv+T8gCnym1gONizBJ1vwvdMRSU+F2VJPZg/A0auTbSNU\n8Yz/oMsN9OHoMcVJNXoLHtWAfBL7+Hm4Pq2EQrfZfJ47V/W+Pg==\n-----END RSA PRIVATE KEY-----",
+    "type": "git",
+    "url": "git@github.com:ihcdesign/ihcd-front-end.git",
+    "user": null
+  },
+  "attributes": {
+    "auto_bundle_on_deploy": true,
+    "aws_flow_ruby_settings": {
+    },
+    "document_root": "react/web",
+    "rails_env": null
+  },
+  "data_sources": [
+    {
+      "arn": "arn:aws:rds:us-east-1:388399579362:db:production",
+      "type": "RdsDbInstance",
+      "database_name": "ada"
+    }
+  ],
+  "domains": [
+    "www.test.org",
+    "ada"
+  ],
+  "enable_ssl": false,
+  "environment": {
+    "APP_TYPE": "react",
+    "SECURE": "false"
+  },
+  "name": "React",
+  "shortname": "react",
+  "ssl_configuration": {
+    "certificate": null,
+    "private_key": null,
+    "chain": null
+  },
+  "type": "other",
+  "deploy": true
+}

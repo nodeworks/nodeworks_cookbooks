@@ -1,0 +1,1 @@
+default['slack']['webhook_url'] = 'https://hooks.slack.com/services/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'

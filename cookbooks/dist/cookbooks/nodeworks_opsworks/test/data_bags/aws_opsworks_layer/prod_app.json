@@ -1,0 +1,21 @@
+{
+  "layer_id": "37e6b959-85e0-4527-bb35-88953ffdf5fa",
+  "name": "App",
+  "packages": [
+
+  ],
+  "shortname": "prod_app",
+  "type": "custom",
+  "volume_configurations": [
+
+  ],
+  "cloud_watch_logs_configuration": {
+    "enabled": false,
+    "log_streams": [
+      {
+        "file": "/var/lib/aws/opsworks/chef/*.log",
+        "log_group_name": "Production/prod_app/opsworks-command-log"
+      }
+    ]
+  }
+}

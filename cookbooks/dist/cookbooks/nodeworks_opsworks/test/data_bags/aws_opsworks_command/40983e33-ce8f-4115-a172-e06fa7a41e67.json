@@ -1,0 +1,12 @@
+{
+  "type": "deploy",
+  "args": {
+    "app_ids": [
+      "reactapp"
+    ]
+  },
+  "sent_at": "2017-08-18T20:49:20+00:00",
+  "command_id": "40983e33-ce8f-4115-a172-e06fa7a41e67",
+  "iam_user_arn": "arn:aws:iam::388399579362:user/nodeworks",
+  "instance_id": "221941a4-eb8b-43ff-b967-0630766e2e37"
+}
