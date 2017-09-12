@@ -13,8 +13,6 @@ GRAPH
     poise-git (~> 1.0)
   nodeworks_opsworks (0.1.0)
     application_git (>= 0.0.0)
-    certbot (>= 0.0.0)
-    php-fpm (>= 0.0.0)
   poise (2.8.1)
   poise-archive (1.5.0)
     poise (~> 2.6)
