@@ -1,6 +1,6 @@
 DEPENDENCIES
   nodeworks_opsworks
-    path: cookbooks/nodeworks_opsworks
+    path: nodeworks_opsworks
 
 GRAPH
   application (5.2.0)
