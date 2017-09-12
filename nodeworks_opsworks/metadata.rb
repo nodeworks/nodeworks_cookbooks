@@ -7,6 +7,7 @@ long_description 'Installs/Configures nodeworks_opsworks'
 version '0.1.0'
 
 depends "application_git"
+depends "chef_slack"
 
 recipe "php", "Deploy a PHP application"
 recipe "node", "Deploy a Node application"
