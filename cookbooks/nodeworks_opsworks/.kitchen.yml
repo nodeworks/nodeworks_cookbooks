@@ -1,0 +1,32 @@
+---
+driver:
+  name: vagrant
+  network:
+    - ["forwarded_port", { guest: 80, host: 8086 }]
+    - ["private_network", { ip: "192.168.106.175" }]
+
+provisioner:
+  name: chef_zero
+  always_update_cookbooks: true
+
+verifier:
+  name: inspec
+
+platforms:
+  - name: ubuntu-16.04
+    driver:
+      box: tcataldo/ubuntu1604
+      provider: vmware_fusion
+  - name: centos-7.2
+    driver:
+      provider: vmware_fusion
+
+suites:
+  - name: default
+    data_bags_path: "test/data_bags"
+    run_list:
+      - recipe[nodeworks_opsworks::node]
+    verifier:
+      inspec_tests:
+        - test/recipes
+    attributes:

@@ -1,0 +1,29 @@
+DEPENDENCIES
+  nodeworks_opsworks
+    path: cookbooks/nodeworks_opsworks
+
+GRAPH
+  application (5.2.0)
+    poise (~> 2.4)
+    poise-service (~> 1.0)
+  application_git (1.2.0)
+    application (~> 5.0)
+    poise (~> 2.0)
+    poise-git (~> 1.0)
+  nodeworks_opsworks (0.1.0)
+    application_git (>= 0.0.0)
+    certbot (>= 0.0.0)
+    chef_nginx (>= 0.0.0)
+    chef_slack (>= 0.0.0)
+    php-fpm (>= 0.0.0)
+  poise (2.8.1)
+  poise-archive (1.5.0)
+    poise (~> 2.6)
+  poise-git (1.0.0)
+    poise (~> 2.6)
+    poise-languages (~> 2.1)
+  poise-languages (2.1.1)
+    poise (~> 2.5)
+    poise-archive (~> 1.0)
+  poise-service (1.5.2)
+    poise (~> 2.0)
