@@ -1,6 +1,9 @@
 DEPENDENCIES
+  application_git
+  certbot
   nodeworks_opsworks
     path: nodeworks_opsworks
+  php-fpm
 
 GRAPH
   application (5.2.0)
@@ -10,11 +13,29 @@ GRAPH
     application (~> 5.0)
     poise (~> 2.0)
     poise-git (~> 1.0)
+  apt (2.9.2)
+  bluepill (2.4.3)
+    rsyslog (>= 2.0)
+  build-essential (1.4.4)
+  certbot (0.1.2)
+    cron (>= 0.0.0)
+    nginx (< 3.0)
+    yum-epel (>= 0.0.0)
+  compat_resource (12.19.0)
+  nginx (2.4.2)
+    apt (~> 2.2)
+    bluepill (~> 2.3)
+    build-essential (~> 1.4)
+    ohai (~> 1.1)
+    runit (~> 1.2)
+    yum (~> 3.0)
+    yum-epel (>= 0.0.0)
   nodeworks_opsworks (0.1.0)
     application_git (>= 0.0.0)
     certbot (>= 0.0.0)
-    chef_slack (>= 0.0.0)
     php-fpm (>= 0.0.0)
+  ohai (1.1.12)
+  php-fpm (0.8.0)
   poise (2.8.1)
   poise-archive (1.5.0)
     poise (~> 2.6)
@@ -26,3 +47,10 @@ GRAPH
     poise-archive (~> 1.0)
   poise-service (1.5.2)
     poise (~> 2.0)
+  rsyslog (6.0.2)
+  runit (1.8.0)
+    packagecloud (>= 0.0.0)
+    yum-epel (>= 0.0.0)
+  yum (3.13.0)
+  yum-epel (2.1.2)
+    compat_resource (>= 12.16.3)
