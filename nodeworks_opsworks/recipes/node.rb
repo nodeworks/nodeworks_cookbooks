@@ -17,6 +17,7 @@ opsworks_deploy_node app_path do
   repository_url app[:app_source][:url]
   repository_key app[:app_source][:ssh_key]
   short_name app[:shortname]
+  environment_vars app[:environment]
   app app
   permission '0755'
 end

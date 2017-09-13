@@ -6,6 +6,7 @@ property :repository_url, String, required: true
 property :repository_key, String, required: true
 property :short_name, String, required: true
 property :app_type, String, required: true
+property :environment_vars, Object, required: true
 property :app, Object, required: true
 property :permission, String, required: true
 
@@ -79,13 +80,15 @@ action :deploy do
       notifies :notify, "slack_notify[notify_git_deploy]", :immediately
     end
 
-    file this_resource.app_path + '/.env' do
+    # Setup the environment variables
+    template this_resource.app_path + '/.env' do
+      source 'env.erb'
+      mode '0660'
       owner 'www-data'
       group 'www-data'
-      mode 0755
-      content lazy { IO.read(this_resource.app_path + '/.env.sample') }
-      action :create
-      not_if { ::File.exist?(this_resource.app_path + '/.env') }
+      variables(
+        :env => this_resource.environment_vars
+      )
     end
 
     bash 'install project dependencies' do
