@@ -2,7 +2,7 @@
 # Cookbook:: nodeworks_opsworks
 # Recipe:: php
 #
-# Copyright:: 2017, The Authors, All Rights Reserved.
+# Copyright:: 2017, Rob Lee, All Rights Reserved.
 
 # Setup the variables.
 command = search(:aws_opsworks_command).first

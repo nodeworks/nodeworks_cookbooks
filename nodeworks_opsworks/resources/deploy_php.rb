@@ -1,4 +1,4 @@
-resource_name :opsworks_deploy
+resource_name :opsworks_deploy_php
 
 property :app_path, String, name_property: true
 property :app_name, String, required: true
