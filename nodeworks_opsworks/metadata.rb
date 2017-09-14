@@ -11,5 +11,6 @@ depends "chef_slack"
 
 recipe "php", "Deploy a PHP application"
 recipe "node", "Deploy a Node application"
+recipe "default", "Deploy an application"
 
 gem "slack-notifier"
