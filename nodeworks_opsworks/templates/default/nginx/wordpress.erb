@@ -7,8 +7,8 @@ server {
       return 301 https://$host$request_uri;
     }
 
-    ssl_certificate /etc/letsencrypt/live/<%= @app[:domains].first %>/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/<%= @app[:domains].first %>/privkey.pem;
+    #ssl_certificate /etc/letsencrypt/live/<%= @app[:domains].first %>/fullchain.pem;
+    #ssl_certificate_key /etc/letsencrypt/live/<%= @app[:domains].first %>/privkey.pem;
     <% end -%>
 
     server_name <%= @app[:domains].first %>;
@@ -17,6 +17,10 @@ server {
     index index.html index.htm index.php;
 
     charset utf-8;
+
+    location ~ /.well-known {
+      allow all;
+    }
 
     location / {
         try_files $uri $uri/ /index.php?$query_string;
