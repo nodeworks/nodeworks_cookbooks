@@ -231,9 +231,9 @@ action :deploy do
     # Reload/Start nginx
     bash 'restart NGINX' do
       code <<-EOH
-      sudo service nginx stop
-      sudo pm2 delete NGINX
-      sudo pm2 start /usr/sbin/nginx --name NGINX -- -g "daemon off; master_process on;"
+        sudo service nginx stop
+        sudo pm2 delete NGINX
+        sudo pm2 start /usr/sbin/nginx --name NGINX -- -g "daemon off; master_process on;"
       EOH
       notifies :notify, "slack_notify[notify_nginx_reload]", :immediately
     end

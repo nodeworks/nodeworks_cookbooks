@@ -151,7 +151,7 @@ action :deploy do
       cwd this_resource.app_path
       code <<-EOH
         sudo yarn prod
-        EOH
+      EOH
     end
 
     execute "chown-data-www" do
