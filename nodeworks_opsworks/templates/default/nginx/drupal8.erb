@@ -3,12 +3,22 @@ server {
     listen 443 ssl http2;
 
     <% if @app[:environment][:SECURE] == 'true' -%>
-    if ($https = "") {
-      return 301 https://$host$request_uri;
-    }
+      <% if @app[:environment][:LOAD_BALANCER] == 'true' -%>
 
-    ssl_certificate /etc/letsencrypt/live/<%= @app[:domains].first %>/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/<%= @app[:domains].first %>/privkey.pem;
+        if ($http_x_forwarded_proto != "https") {
+          return 301 https://$host$request_uri;
+        }
+
+      <% else -%>
+
+        if ($https = "") {
+          return 301 https://$host$request_uri;
+        }
+
+        ssl_certificate /etc/letsencrypt/live/<%= @app[:domains].first %>/fullchain.pem;
+        ssl_certificate_key /etc/letsencrypt/live/<%= @app[:domains].first %>/privkey.pem;
+
+      <% end -%>
     <% end -%>
 
     server_name <%= @app[:domains].first %>;
