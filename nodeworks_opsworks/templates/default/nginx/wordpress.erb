@@ -21,7 +21,7 @@ server {
       <% end -%>
     <% end -%>
 
-    server_name <%= @app[:domains].first %>;
+    server_name <%= @app[:domains].join(' ') %>;
     root /var/www/<%= @app[:attributes][:document_root] %>;
 
     index index.html index.htm index.php;
