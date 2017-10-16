@@ -140,6 +140,7 @@ action :deploy do
       php7.1-opcache \
       php7.1-readline \
       php7.1-xml \
+      php7.1-bcmath \
       php7.1-zip
     EOH
     not_if { ::File.exist?('/etc/php/7.1/fpm/php.ini') }

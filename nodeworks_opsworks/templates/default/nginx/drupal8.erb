@@ -1,8 +1,7 @@
 server {
     listen 80;
-    listen 443 ssl http2;
-
     <% if @app[:environment][:SECURE] == 'true' -%>
+    listen 443 ssl http2;
       <% if @app[:environment][:LOAD_BALANCER] == 'true' -%>
 
         if ($http_x_forwarded_proto != "https") {
