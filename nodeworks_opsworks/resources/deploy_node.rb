@@ -4,6 +4,7 @@ property :app_path, String, name_property: true
 property :app_name, String, required: true
 property :repository_url, String, required: true
 property :repository_key, String, required: true
+property :branch, String, required: true
 property :short_name, String, required: true
 property :app_type, String, required: true
 property :environment_vars, Object, required: true
@@ -117,6 +118,7 @@ action :deploy do
     git do
       user 'root'
       group 'root'
+      revision this_resource.branch
       repository this_resource.repository_url
       deploy_key this_resource.repository_key
       notifies :notify, "slack_notify[notify_git_deploy]", :immediately

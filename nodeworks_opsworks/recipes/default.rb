@@ -17,6 +17,7 @@ if ['drupal7', 'drupal8', 'wordpress'].include? app[:environment][:APP_TYPE]
     app_type app[:environment][:APP_TYPE]
     repository_url app[:app_source][:url]
     repository_key app[:app_source][:ssh_key]
+    branch app[:app_source][:revision]
     short_name app[:shortname]
     environment_vars app[:environment]
     app app
@@ -31,6 +32,7 @@ if ['react', 'node', 'angularjs', 'angular2', 'angular4'].include? app[:environm
     app_type app[:environment][:APP_TYPE]
     repository_url app[:app_source][:url]
     repository_key app[:app_source][:ssh_key]
+    branch app[:app_source][:revision]
     short_name app[:shortname]
     environment_vars app[:environment]
     app app
