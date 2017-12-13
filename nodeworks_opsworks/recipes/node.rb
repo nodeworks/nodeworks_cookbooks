@@ -19,6 +19,7 @@ opsworks_deploy_node app_path do
   branch app[:app_source][:revision]
   short_name app[:shortname]
   environment_vars app[:environment]
+  port app[:environment][:PORT]
   app app
   permission '0755'
 end

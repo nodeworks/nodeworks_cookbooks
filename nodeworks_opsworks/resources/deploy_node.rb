@@ -6,6 +6,7 @@ property :repository_url, String, required: true
 property :repository_key, String, required: true
 property :branch, String, required: true
 property :short_name, String, required: true
+property :port, String, required: true
 property :app_type, String, required: true
 property :environment_vars, Object, required: true
 property :app, Object, required: true
