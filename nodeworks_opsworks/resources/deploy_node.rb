@@ -41,6 +41,11 @@ action :deploy do
     action :nothing
   end
 
+  slack_notify "notify_redis_installed" do
+    message "Redis has been installed"
+    action :nothing
+  end
+
   slack_notify "notify_nginx_reload" do
     message "NGINX has reloaded"
     action :nothing
@@ -103,6 +108,24 @@ action :deploy do
     notifies :notify, "slack_notify[notify_nginx_installed]", :immediately
   end
 
+  # Install Redis
+  package 'redis-server' do
+    not_if { ::File.exist?("/etc/init.d/redis-server") }
+    only_if { this_resource.environment_vars['REDIS'] }
+    notifies :notify, "slack_notify[notify_redis_installed]", :immediately
+  end
+
+  # Reload/Start Redis
+  bash 'restart Redis' do
+    code <<-EOH
+        sudo service redis-server stop
+        sudo pm2 delete Redis
+        sudo pm2 start /usr/bin/redis-server --name Redis
+    EOH
+    only_if { this_resource.environment_vars['REDIS'] }
+    notifies :notify, "slack_notify[notify_nginx_reload]", :immediately
+  end
+
   # Setup the app directory
   directory this_resource.app_path do
     owner 'www-data'
@@ -143,19 +166,19 @@ action :deploy do
       EOH
     end
 
-    bash 'build app' do
-      cwd this_resource.app_path
-      code <<-EOH
-        sudo yarn build
-      EOH
-    end
-
-    bash 'run app' do
-      cwd this_resource.app_path
-      code <<-EOH
-        sudo yarn prod
-      EOH
-    end
+    # bash 'build app' do
+    #   cwd this_resource.app_path
+    #   code <<-EOH
+    #     sudo yarn build
+    #   EOH
+    # end
+    #
+    # bash 'run app' do
+    #   cwd this_resource.app_path
+    #   code <<-EOH
+    #     sudo yarn prod
+    #   EOH
+    # end
 
     execute "chown-data-www" do
       command "chown -R www-data:www-data #{this_resource.app_path}"
