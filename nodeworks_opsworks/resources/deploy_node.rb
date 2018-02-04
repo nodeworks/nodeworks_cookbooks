@@ -166,19 +166,19 @@ action :deploy do
       EOH
     end
 
-    # bash 'build app' do
-    #   cwd this_resource.app_path
-    #   code <<-EOH
-    #     sudo yarn build
-    #   EOH
-    # end
-    #
-    # bash 'run app' do
-    #   cwd this_resource.app_path
-    #   code <<-EOH
-    #     sudo yarn prod
-    #   EOH
-    # end
+    bash 'build app' do
+      cwd this_resource.app_path
+      code <<-EOH
+        sudo yarn build
+      EOH
+    end
+
+    bash 'run app' do
+      cwd this_resource.app_path
+      code <<-EOH
+        sudo yarn prod
+      EOH
+    end
 
     execute "chown-data-www" do
       command "chown -R www-data:www-data #{this_resource.app_path}"
