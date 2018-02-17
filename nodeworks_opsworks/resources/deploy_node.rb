@@ -14,6 +14,14 @@ property :permission, String, required: true
 
 action :deploy do
   this_resource = new_resource
+  stage_path = "#{this_resource.app_path}_stage"
+  stage_port = port_open?(this_resource.app[:environment][:PORT]) ? this_resource.app[:environment][:PORT] : this_resource.app[:environment][:PORT].reverse
+
+  stage_env = this_resource.environment_vars
+  stage_env[:PORT] = stage_port
+
+  stage_app = this_resource.app
+  stage_app[:environment] = stage_env
 
   # Slack Notifications
   slack_notify "notify_nodejs_installed" do
@@ -48,6 +56,26 @@ action :deploy do
 
   slack_notify "notify_nginx_reload" do
     message "NGINX has reloaded"
+    action :nothing
+  end
+
+  slack_notify "notify_redis_reload" do
+    message "Redis has reloaded"
+    action :nothing
+  end
+
+  slack_notify "notify_prod_moved" do
+    message "App directory temporarily moved"
+    action :nothing
+  end
+
+  slack_notify "notify_pm2_renamed" do
+    message "Running PM2 temporarily renamed"
+    action :nothing
+  end
+
+  slack_notify "notify_delete_old" do
+    message "Old app deleted"
     action :nothing
   end
 
@@ -123,7 +151,23 @@ action :deploy do
         sudo pm2 start /usr/bin/redis-server --name Redis
     EOH
     only_if { this_resource.environment_vars['REDIS'] }
-    notifies :notify, "slack_notify[notify_nginx_reload]", :immediately
+    notifies :notify, "slack_notify[notify_redis_reload]", :immediately
+  end
+
+  log 'message' do
+    message "PATHS: #{::File.exist?(this_resource.app_path)}"
+    level :fatal
+  end
+
+  # Move the prod directory if exists
+  bash 'move prod directory' do
+    cwd this_resource.app_path
+    code <<-EOH
+      sudo mv #{this_resource.app_path} #{stage_path}
+      sudo yarn prod:rename
+    EOH
+    only_if { ::File.exist?(this_resource.app_path) }
+    notifies :notify, "slack_notify[notify_prod_moved]", :immediately
   end
 
   # Setup the app directory
@@ -155,7 +199,7 @@ action :deploy do
       owner 'www-data'
       group 'www-data'
       variables(
-        :env => this_resource.environment_vars
+        :env => stage_env
       )
     end
 
@@ -193,7 +237,7 @@ action :deploy do
       owner "root"
       group "root"
       mode 0644
-      variables( :app => this_resource.app )
+      variables( :app => stage_app )
       notifies :notify, "slack_notify[notify_nginx_config]", :immediately
     end
 
@@ -206,5 +250,21 @@ action :deploy do
       EOH
       notifies :notify, "slack_notify[notify_nginx_reload]", :immediately
     end
+
+    # Delete old app
+    bash 'Delete and cleanup old app' do
+      cwd this_resource.app_path
+      code <<-EOH
+        sudo yarn prod:delete-tmp
+        sudo rm -rf #{stage_path}
+      EOH
+      notifies :notify, "slack_notify[notify_delete_old]", :immediately
+    end
+  end
+end
+
+action_class do
+  def port_open?(port)
+    !system("sudo lsof -i:#{port}", out: '/dev/null')
   end
 end

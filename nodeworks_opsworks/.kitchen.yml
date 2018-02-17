@@ -1,6 +1,9 @@
 ---
 driver:
   name: vagrant
+  customize:
+    memory: 2048
+    cpus: 2
   network:
     - ["forwarded_port", { guest: 80, host: 8086 }]
     - ["private_network", { ip: "192.168.106.175" }]
