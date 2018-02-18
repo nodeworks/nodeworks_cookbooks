@@ -164,7 +164,8 @@ action :deploy do
     cwd this_resource.app_path
     code <<-EOH
       sudo mv #{this_resource.app_path} #{stage_path}
-      sudo yarn prod:rename
+      sudo cd #{stage_path}
+      sudo yarn prod:stage
     EOH
     only_if { ::File.exist?(this_resource.app_path) }
     notifies :notify, "slack_notify[notify_prod_moved]", :immediately
