@@ -236,7 +236,7 @@ action :deploy do
       variables(
           :env => stage_env
       )
-      only_if { ::File.exist?(this_resource.app_path + '/.env') }
+      only_if { ::File.exist?(this_resource.app_path + '/.env.example') }
     end
 
     # Run prod JS script if there is one
