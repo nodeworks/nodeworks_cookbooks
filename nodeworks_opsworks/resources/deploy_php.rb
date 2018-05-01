@@ -80,6 +80,11 @@ action :deploy do
     action :nothing
   end
 
+  slack_notify "notify_yarn_deploy" do
+    message "App #{this_resource.app_name} has run Yarn deployment scripts"
+    action :nothing
+  end
+
   slack_notify "notify_file_permissions" do
     message "App #{this_resource.app_name} has been given proper file permissions"
     action :nothing
@@ -219,6 +224,27 @@ action :deploy do
       user "root"
       action :run
       notifies :notify, "slack_notify[notify_file_permissions]", :immediately
+    end
+
+    # Setup the environment variables if applicable
+    template this_resource.app_path + '/.env' do
+      source 'env.erb'
+      mode '0660'
+      owner 'www-data'
+      group 'www-data'
+      variables(
+          :env => stage_env
+      )
+      only_if { ::File.exist?(this_resource.app_path + '/.env') }
+    end
+
+    # Run prod JS script if there is one
+    bash 'run misc scripts' do
+      cwd this_resource.app_path
+      code <<-EOH
+        sudo yarn prod &> /dev/null
+      EOH
+      notifies :notify, "slack_notify[notify_yarn_deploy]", :immediately
     end
 
     # Setup the nginx config file for the site
