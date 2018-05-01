@@ -13,6 +13,7 @@ property :permission, String, required: true
 
 action :deploy do
   this_resource = new_resource
+  stage_env = this_resource.environment_vars
 
   # Slack Notifications
   slack_notify "notify_nodejs_installed" do
