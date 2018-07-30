@@ -245,6 +245,7 @@ action :deploy do
       code <<-EOH
         sudo yarn prod &> /dev/null
       EOH
+      only_if { ::File.exist?(this_resource.app_path + '/package.json') }
       notifies :notify, "slack_notify[notify_yarn_deploy]", :immediately
     end
 
