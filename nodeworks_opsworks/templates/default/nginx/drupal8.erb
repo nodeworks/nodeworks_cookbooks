@@ -66,56 +66,6 @@ server {
         fastcgi_read_timeout 300;
     }
 
-    <% if defined?(@app[:environment][:RATCHET_PORT]) -%>
-    location /socket {
-      # switch off logging
-      access_log off;
-
-      # redirect all HTTP traffic to localhost
-      proxy_pass http://localhost:<%= @app[:environment][:RATCHET_PORT] %>;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header Host $host;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-
-      # WebSocket support (nginx 1.4)
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection "upgrade";
-
-      # Path rewriting
-      rewrite /socket/(.*) /$1 break;
-      proxy_redirect off;
-
-      # timeout extension, possibly keep this short if using a ping strategy
-      proxy_read_timeout 99999s;
-    }
-    <% end -%>
-
-    <% if defined?(@app[:environment][:GRAPHQL_SUBSCRIPTION_PORT]) -%>
-    location /subscriptions {
-      # switch off logging
-      access_log off;
-
-      # redirect all HTTP traffic to localhost
-      proxy_pass http://localhost:<%= @app[:environment][:GRAPHQL_SUBSCRIPTION_PORT] %>;
-      proxy_set_header X-Real-IP $remote_addr;
-      proxy_set_header Host $host;
-      proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-
-      # WebSocket support (nginx 1.4)
-      proxy_http_version 1.1;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection "upgrade";
-
-      # Path rewriting
-      rewrite /socket/(.*) /$1 break;
-      proxy_redirect off;
-
-      # timeout extension, possibly keep this short if using a ping strategy
-      proxy_read_timeout 99999s;
-    }
-    <% end -%>
-
     location ~ (^|/)\. {
         return 403;
     }
