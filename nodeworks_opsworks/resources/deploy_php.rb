@@ -16,80 +16,6 @@ action :deploy do
   stage_env = this_resource.environment_vars
 
   # Slack Notifications
-  slack_notify "notify_nodejs_installed" do
-    message "NodeJS has been installed"
-    action :nothing
-  end
-
-  slack_notify "notify_nodejs_dependencies" do
-    message "NodeJS dependencies have been installed"
-    action :nothing
-  end
-
-  slack_notify "notify_pm2_slack_installed" do
-    message "PM2 slack has been installed/updated"
-    action :nothing
-  end
-
-  slack_notify "notify_deployment_end" do
-    message "App #{this_resource.app_name} deployed successfully"
-    action :nothing
-  end
-
-  slack_notify "notify_php_restart" do
-    message "PHP-FPM has been restarted"
-    action :nothing
-  end
-
-  slack_notify "notify_php_installed" do
-    message "PHP-FPM has been installed"
-    action :nothing
-  end
-
-  slack_notify "notify_php_config" do
-    message "PHP-FPM - php-fpm.conf has been updated for #{this_resource.app_name}"
-    action :nothing
-  end
-
-  slack_notify "notify_php_ini" do
-    message "PHP-FPM - php.ini config has been updated for #{this_resource.app_name}"
-    action :nothing
-  end
-
-  slack_notify "notify_php_pool" do
-    message "PHP-FPM - pool www.conf has been updated for #{this_resource.app_name}"
-    action :nothing
-  end
-
-  slack_notify "notify_nginx_installed" do
-    message "NGINX has been installed"
-    action :nothing
-  end
-
-  slack_notify "notify_nginx_reload" do
-    message "NGINX has reloaded"
-    action :nothing
-  end
-
-  slack_notify "notify_nginx_config" do
-    message "NGINX site config has been updated for #{this_resource.app_name}"
-    action :nothing
-  end
-
-  slack_notify "notify_git_deploy" do
-    message "App #{this_resource.app_name} has been checked out from git"
-    action :nothing
-  end
-
-  slack_notify "notify_yarn_deploy" do
-    message "App #{this_resource.app_name} has run Yarn deployment scripts"
-    action :nothing
-  end
-
-  slack_notify "notify_file_permissions" do
-    message "App #{this_resource.app_name} has been given proper file permissions"
-    action :nothing
-  end
 
   # Update repos
   apt_update 'update'
@@ -101,7 +27,6 @@ action :deploy do
       sudo apt-get install nodejs -y
     EOH
     not_if { ::File.exist?('/etc/apt/sources.list.d/nodesource.list') }
-    notifies :notify, "slack_notify[notify_nodejs_installed]", :immediately
   end
 
   bash 'install node dependencies' do
@@ -109,7 +34,6 @@ action :deploy do
       sudo npm i -g pm2 yarn
     EOH
     not_if { ::File.exist?('/usr/bin/pm2') && ::File.exist?('/usr/bin/yarn') }
-    notifies :notify, "slack_notify[notify_nodejs_dependencies]", :immediately
   end
 
   # Setup PM2 Slack
@@ -124,7 +48,6 @@ action :deploy do
       sudo pm2 set pm2-slack:online true
       sudo pm2 set pm2-slack:stop true
     EOH
-    notifies :notify, "slack_notify[notify_pm2_slack_installed]", :immediately
   end
 
   # Install PHP-FPM
@@ -151,7 +74,6 @@ action :deploy do
       php7.1-zip
     EOH
     not_if { ::File.exist?('/etc/php/7.1/fpm/php.ini') }
-    notifies :notify, "slack_notify[notify_php_installed]", :immediately
   end
 
   # Setup the php config files for the site
@@ -161,7 +83,6 @@ action :deploy do
     group "root"
     mode 0644
     variables( :app => this_resource.app )
-    notifies :notify, "slack_notify[notify_php_config]", :immediately
   end
 
   template "/etc/php/7.1/fpm/php.ini" do
@@ -170,7 +91,6 @@ action :deploy do
     group "root"
     mode 0644
     variables( :app => this_resource.app )
-    notifies :notify, "slack_notify[notify_php_ini]", :immediately
   end
 
   template "/etc/php/7.1/fpm/pool.d/www.conf" do
@@ -179,7 +99,6 @@ action :deploy do
     group "root"
     mode 0644
     variables( :app => this_resource.app )
-    notifies :notify, "slack_notify[notify_php_pool]", :immediately
   end
 
   # Reload PHP-FPM
@@ -189,13 +108,11 @@ action :deploy do
       sudo pm2 delete PHP-FPM
       sudo pm2 start --name PHP-FPM /usr/sbin/php-fpm7.1 -- --nodaemonize --fpm-config /etc/php/7.1/fpm/php-fpm.conf
     EOH
-    notifies :notify, "slack_notify[notify_php_restart]", :immediately
   end
 
   # Install NGINX
   package 'nginx' do
     not_if { ::File.exist?("/etc/init.d/nginx") }
-    notifies :notify, "slack_notify[notify_nginx_installed]", :immediately
   end
 
   # Setup the app directory
@@ -217,14 +134,12 @@ action :deploy do
       revision this_resource.branch
       repository this_resource.repository_url
       deploy_key this_resource.repository_key
-      notifies :notify, "slack_notify[notify_git_deploy]", :immediately
     end
 
     execute "chown-data-www" do
       command "chown -R www-data:www-data #{this_resource.app_path}"
       user "root"
       action :run
-      notifies :notify, "slack_notify[notify_file_permissions]", :immediately
     end
 
     # Setup the environment variables if applicable
@@ -246,7 +161,6 @@ action :deploy do
         sudo yarn prod &> /dev/null
       EOH
       only_if { ::File.exist?(this_resource.app_path + '/package.json') }
-      notifies :notify, "slack_notify[notify_yarn_deploy]", :immediately
     end
 
     # Setup the nginx config file for the site
@@ -256,7 +170,6 @@ action :deploy do
       group "root"
       mode 0644
       variables( :app => this_resource.app )
-      notifies :notify, "slack_notify[notify_nginx_config]", :immediately
     end
 
     # Reload/Start nginx
@@ -266,7 +179,6 @@ action :deploy do
         sudo pm2 delete NGINX
         sudo pm2 start /usr/sbin/nginx --name NGINX -- -g "daemon off; master_process on;"
       EOH
-      notifies :notify, "slack_notify[notify_nginx_reload]", :immediately
     end
   end
 end
